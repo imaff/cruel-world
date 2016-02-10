@@ -1,0 +1,81 @@
+include mixins
+doctype
+html( lang="en" )
+    head
+    include head.jade
+    body(style="padding-bottom:10rem;")
+            if  authorised
+                script(type='text/javascript').
+                    initMessageManager()
+            else
+                script(type='text/javascript').
+                    console.log("-")
+        .container
+            .jumbotron
+                h1 Cruel World Chat
+            if !user
+                +nav("", "dropdown_menu", "default")
+                    +nav_item( "/", "active" ) Home
+                    +nav_item( "/about" ) About
+                .row
+                    .col-sm-6.col-md-9
+                        +panel("Chat information", "info") Welcome to Cruel world chat! You must be logged in for start conversation with other users!
+                    .col-sm-6.col-md-3
+                        +panel("Login Form", "success", "","login-form")
+                            .form-group
+                                label(for='usr') Name:
+                                input#usr.form-control(type='text')
+                            .form-group
+                                label(for='pwd') Password:
+                                input#pwd.form-control(type='password')
+                            +button("primary","#","small","loginBtn") Log-in
+                            +button("info", "#", "small","newUser") New User
+
+                        +panel("Registration Form", "success", "none", "registration-form")
+                            .form-group
+                                label(for='login') Login (min. 4):
+                                input#login.form-control(type='text')
+                            .form-group
+                                label(for='email') Email:
+                                input#email.form-control(type='text')
+                            .form-group
+                                label(for='password') Password (min. 4):
+                                input#password.form-control(type='password')
+                            .form-group
+                                label(for='pwd-rpt') Re-Password:
+                                input#pwd-rpt.form-control(type='password')
+                            +button("primary","#","small", "register") Register Me Please
+                            +button("info","#","small", "bckLogin") Back to Login
+            else
+                +nav("", "dropdown_menu", "default")
+                    +nav_item( "/", "active" ) Home
+                    +nav_item( "/about" ) About
+                .row
+                    .col-sm-6.col-md-9
+                        +panel("Main room", "info", "block", "chathead")
+                            .form-group
+                                div#chat-room
+                            .form-group
+                                label(for='msg') Your message:
+                                .input-group
+                                    input#msg.form-control(type='text')
+                                    span.input-group-btn
+                                        +button("success", "#", "default", "sndMSG") Send
+                    .col-sm-6.col-md-3
+                        +panel("User Panel", "success")
+                            .form-group
+                                span.user Hello, #{user.login}. We are waiting for you!
+                            +button("info", "#", "small" , "quit") Log-out
+                    .col-sm-6.col-md-3
+                        +panel("Rooms Panel", "warning")
+                            .form-group
+                                span Connect to room
+                                    .input-group
+                                        input.form-control(id='searchtxt',type='text', placeholder='Search by id...')
+                                        span.input-group-btn
+                                            +button("info", "#", "default" , "search") Go!
+                            .form-group
+                                .input-group
+                                    +button("info", "#", "small" , "newroom") New Room
+                                    +button("warning", "#", "small" , "mainroom") Main Room
+include error

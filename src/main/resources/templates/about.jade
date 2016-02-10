@@ -1,0 +1,15 @@
+include mixins
+doctype
+html( lang="en" )
+    head
+    include head.jade
+    body(style="padding-bottom:10rem;")
+        .container
+            .jumbotron
+                h1 Cruel World Chat
+            +nav("", "dropdown_menu", "default")
+                +nav_item( "/") Home
+                +nav_item( "/about", "active") About
+            .row
+                .col-sm-6.col-md-12
+                    +panel("Test project", "info") Little test for chat on java with Spring boot by A.Kuzovchikov

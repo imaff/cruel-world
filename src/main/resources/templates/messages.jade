@@ -1,0 +1,6 @@
+include mixins
++listGroup
+    each message in messages
+        +listItem
+            +listHeading #{message.message}
+            +listText #{message.login} (#{message.stringDate})
