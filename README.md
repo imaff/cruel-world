@@ -11,5 +11,5 @@ Used
 
 Installation
 -------------
-Before use - please config file cruel-world\src\main\resources\application.properties
-And apply patch - cruel-world\src\main\resources\sql\patch.sql
+* Before use - please config file cruel-world\src\main\resources\application.properties
+* And apply patch - cruel-world\src\main\resources\sql\patch.sql
